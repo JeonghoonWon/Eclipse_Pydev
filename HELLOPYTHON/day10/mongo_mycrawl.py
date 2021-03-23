@@ -12,10 +12,14 @@ import sys
 import pymongo
 
  
+def insertStock(s_code,s_name,s_price,yyyymmdd_hhmm): 
+    connection = pymongo.MongoClient("mongodb://localhost")
+    db = connection.python
+    stock = db.stock
+    
 
-connection = pymongo.MongoClient("mongodb://localhost")
-db = connection.python
-stock = db.stock
+    doc = {'s_code':s_code,'s_name':s_name,'s_price':s_price,'in_date':yyyymmdd_hhmm}
+    stock.insert_one(doc)
 
 #doc = {'col01':'1','col02':'2','col03':'3'}
 
@@ -35,9 +39,9 @@ for i in range(10):
     soup = BeautifulSoup(text, 'html.parser')
     
     now = datetime.now() 
-    formatted_date = now.strftime('%Y%m%d.%H%M%S')
+    yyyymmdd_hhmm = now.strftime('%Y%m%d.%H%M%S')
         
-    print(formatted_date)
+
     for info in soup.select('.tbody'):
         s_name = info.dt.text # s_name
         s_code_text = info.dd["id"] 
@@ -46,14 +50,13 @@ for i in range(10):
         #curs.execute(sql, (num, title, price, formatted_date))
         #print(title, "/", num, "/", price)
         #print("-----------------------------------------------")
-        stock.insert_one({"s_name":s_name,"s_code":s_code,"s_price":s_price,"in_date":formatted_date})
+        insertStock(s_code, s_name, s_price, yyyymmdd_hhmm)
     # print(text, end="\t") 끝에 탭을 추가한다. 
 #   conn.commit()
     time.sleep(60)
 
 #conn.close()
-connection.close()
-    
+
         
     
 
