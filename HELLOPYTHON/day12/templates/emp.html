@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원관리</title>
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function fn_add() {
+		var sabun	= $("#sabun").val();
+		var name 	= $("#name").val();
+		var dept 	= $("#dept").val();
+		var mobile	= $("#mobile").val(); 
+		/* ajax 를 사용해보자 */
+		var param = {
+			'sabun'	 : sabun,
+			'name'	 : name,
+			'dept'	 : dept,
+			'mobile' : mobile
+		}
+		$.ajax({
+			type : 'POST',
+			url : '/ins.ajax',
+			data : JSON.stringify(param),
+			dataType : 'JSON',
+			contentType : "application/json",
+			success : function(data) {
+				console.log(data);
+				if(data.result == "success"){
+					location.reload()
+				}
+			},
+			error : function(request, status, error) {
+				console.log(error);
+			}
+		})
+		/* alert("fn_add"); */
+	}
+
+	function fn_mod() {
+		alert("fn_mod");
+	}
+
+	function fn_del() {
+		alert("fn_del");
+	}
+
+	function fn_detail(sabun, name, dept, mobile) {
+
+		/* javascript */
+		$("#sabun").val(sabun);
+		$("#name").val(name);
+		$("#dept").val(dept);
+		$("#mobile").val(mobile);
+
+		/* var obj_sabun	 = document.getElementById("sabun");
+		var obj_name	 = document.getElementById("name");
+		var obj_dept	 = document.getElementById("dept");
+		var obj_mobile   = document.getElementById("mobile");
+		
+		obj_sabun.value  = sabun;
+		obj_name.value   = name;
+		obj_dept.value   = dept;
+		obj_mobile.value = mobile; */
+	}
+</script>
+
+<style>
+table {
+	text-align: center;
+	border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+	<table name="table1" border="1">
+
+		<tbody>
+			<tr>
+				<th>사번</th>
+				<th>이름</th>
+				<th>부서</th>
+				<th>핸드폰번호</th>
+			</tr>
+			{% for e in list %}
+			<tr>
+				<td><a
+					href="javascript:fn_detail('{{ e.sabun }}','{{ e.name }}','{{ e.dept }}','{{ e.mobile }}')">{{e.sabun}}</a>
+
+				</td>
+				<td>{{ e.name }}</td>
+				<td>{{ e.dept }}</td>
+				<td>{{ e.mobile }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+	<table name="table2" border="1">
+		<tbody>
+
+
+			<tr>
+				<tr><td>사번</td>
+				<td><input type="text" id="sabun" /></td>
+			</tr>
+			<tr>
+			<td>이름</td>
+			<td><input type="text" id="name" /></td>
+			</tr>
+			<tr>
+			<td>부서</td>
+			<td><input type="text" id="dept" /></td>
+			</tr>
+			<tr>
+			<td>핸드폰번호</td>
+			<td><input type="text" id="mobile" /></td>
+			</tr>
+
+			<td
+			 colspan="2">
+						<input type="button" onclick="fn_add()" value="추가" />
+						<input type="button" onclick="fn_mod()" value="수정" />
+						<input type="button" onclick="fn_del()" value="삭제" />
+					</td>
+				</tr>
+			
+				
+			
+		</tbody>
+		</table>
+		
+		
+</table>
+</body>
+</html>
