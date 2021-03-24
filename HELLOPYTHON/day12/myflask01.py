@@ -28,5 +28,40 @@ def ins_ajax():
         result = "success"
     return jsonify(result = result)
 
+@app.route('/del.ajax', methods=['POST'])
+def del_ajax():
+    data = request.get_json()
+    print(data)
+    
+    sabun = data['sabun']
+    
+    cnt = MyEmpDao().delEmp(sabun)
+    result = "fail"
+    if cnt == 1:
+        result = "success"
+    return jsonify(result = result)
+
+@app.route('/mod.ajax', methods=['POST'])
+def mod_ajax():
+    data = request.get_json()
+    print(data)
+    sabun  = data['sabun']
+    name   = data['name']
+    dept   = data['dept']
+    mobile = data['mobile']
+    
+    # sabun = request.form.get('sabun')
+    # name = request.form.get('name')
+    # dept = request.form.get('dept')
+    # mobile = request.form.get('mobile')
+    
+    cnt = MyEmpDao().updEmp(sabun, name, dept, mobile)
+    result = "fail"
+    if cnt == 1:
+        result = "success"
+    return jsonify(result = result)
+
+
+
 if __name__ == "__main__":              
-    app.run(host="127.0.0.1", port="80")
+    app.run(host="0.0.0.0", port="80")

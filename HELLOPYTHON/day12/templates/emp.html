@@ -38,11 +38,67 @@
 
 	function fn_mod() {
 		alert("fn_mod");
+		var sabun	= $("#sabun").val();
+		var name 	= $("#name").val();
+		var dept 	= $("#dept").val();
+		var mobile	= $("#mobile").val(); 
+		/* ajax 를 사용해보자 */
+		var param = {
+			'sabun'	 : sabun,
+			'name'	 : name,
+			'dept'	 : dept,
+			'mobile' : mobile
+		}
+		$.ajax({
+			type : 'POST',
+			url : '/mod.ajax',
+			data : JSON.stringify(param),
+			dataType : 'JSON',
+			contentType : "application/json",
+			success : function(data) {
+				console.log(data);
+				if(data.result == "success"){
+					location.reload()
+				}
+			},
+			error : function(request, status, error) {
+				console.log(error);
+			}
+		})
+		/* alert("fn_add"); */
 	}
+	
 
 	function fn_del() {
-		alert("fn_del");
+		/*alert("fn_del"); */
+		var sabun	= $("#sabun").val();
+		
+		/* ajax 를 사용해보자 */
+		var param = {
+			'sabun'	 : sabun
+			
+		}
+		$.ajax({
+			type : 'POST',
+			url : '/del.ajax',
+			data : JSON.stringify(param),
+			dataType : 'JSON',
+			contentType : "application/json",
+			success : function(data) {
+				console.log(data);
+				if(data.result == "success"){
+					location.reload()
+				}
+			},
+			error : function(request, status, error) {
+				console.log(error);
+			}
+		})
+		/* alert("fn_add"); */
 	}
+		
+		
+	
 
 	function fn_detail(sabun, name, dept, mobile) {
 
