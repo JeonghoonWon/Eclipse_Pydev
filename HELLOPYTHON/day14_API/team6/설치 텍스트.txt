@@ -1,0 +1,12 @@
+Visual Studio
+https://visualstudio.microsoft.com/ko/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15
+
+Git설치
+Conda install –c anaconda git
+
+Pycocotools설치
+git clone https://github.com/philferriere/cocoapi.git 
+pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=pythonAPI
+
+OpenCV
+pip install opencv-python

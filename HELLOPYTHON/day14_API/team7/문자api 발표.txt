@@ -1,0 +1,134 @@
+api key = NCSM1ETPQMEUYYF4
+api_secret = YCAJESQKODDJLMTN7DFBJO4PDJ4CARL5
+
+김도윤	010-2450-4831
+김동익	010-6205-4021
+김보미	010-4308-2280
+김보현	010-9719-2470
+김지훈	010-2338-9130
+김혜정	010-4455-1277
+문선준	010-7229-1828
+박세현	010-2876-4096
+박초원	010-6828-7610
+배수진	010-9832-6711
+송수미	010-5458-9526
+양지수	010-3935-0724
+오세일	010-5131-0924
+원정훈	010-6360-0660
+윤지혜	010-4626-0081
+이진수	010-9048-2372
+이현기	010-2875-0267
+임태준	010-5114-0124
+장병길	010-8554-4580
+전형섭	010-3691-8419
+정이삭	010-4686-7852
+정지수	010-2015-9875
+진예은	010-3921-1655
+진유리	010-3440-7800
+최희수	010-5153-7035
+
+s1 = '01024504831'
+s2 = '01062054021'
+s3 = '01043082280'
+s4 = '01097192470'
+s5  ='01023389130'
+s6  ='01044551277'
+s7  ='01072291828'
+s8  ='01028764096'
+s9  ='01068287610'
+s10 ='01098326711'
+s11 ='01054589526'
+s12 ='01039350724'
+s13 ='01051310924'
+s14 ='01063600660'
+s15 ='01046260081'
+s16 ='01090482372'
+s17 ='01028750267'
+s18 ='01051140124'
+s19 ='01085544580'
+s21 ='01046867852'
+s22 ='01020159875'
+s23= '01039211655'
+s24 ='01034407800'
+s25 ='01051537035'
+
+
+list = []
+
+list.append(s1)
+list.append(s2)
+list.append(s3)
+list.append(s4)
+list.append(s5)
+list.append(s6)
+list.append(s7)
+list.append(s8)
+list.append(s9)
+list.append(s10)
+list.append(s11)
+list.append(s12)
+list.append(s13)
+list.append(s14)
+list.append(s15)
+list.append(s16)
+list.append(s17)
+list.append(s18)
+list.append(s19)
+list.append(s21)
+list.append(s22)
+list.append(s23)
+list.append(s24)
+list.append(s25)
+
+print(list)
+print(set(list))
+
+cnt = 0
+list_ran = ""
+for i in set(list) :
+if cnt == 0:
+list_ran += i
+if cnt !=1 :
+list_ran += ","+i
+if cnt ==2 :
+break
+cnt += 1
+print(list_ran)
+
+
+
+
+import sys
+
+from sdk.api.message import Message
+from sdk.exceptions import CoolsmsException
+
+
+## @brief This sample code demonstrate how to send sms through CoolSMS Rest API PHP
+if __name__ == "__main__":
+
+
+    # set api key, api secret
+    api_key = "NCSM1ETPQMEUYYF4"
+    api_secret = "YCAJESQKODDJLMTN7DFBJO4PDJ4CARL5"
+    ## 4 params(to, from, type, text) are mandatory. must be filled
+    params = dict()
+    params['type'] = 'sms' # Message type ( sms, lms, mms, ata )
+    params['to'] = '01097192470, 01054589526' # Recipients Number '01000000000,01000000001'
+    params['from'] = '01085544580' # Sender number\
+    params['text'] = "'<'" # Message
+    cool = Message(api_key, api_secret)
+    try:
+        response = cool.send(params)
+        print("Success Count : %s" % response['success_count'])
+        print("Error Count : %s" % response['error_count'])
+        print("Group ID : %s" % response['group_id'])
+        
+        if "error_list" in response:
+            print("Error List : %s" % response['error_list'])
+    except CoolsmsException as e:
+        print("Error Code : %s" % e.code)
+        print("Error Message : %s" % e.msg)
+    
+    sys.exit()
+

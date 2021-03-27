@@ -1,0 +1,5 @@
+pip install coolsms_python_sdk
+
+
+    api_key = "NCSSWZDGRHKUTB9N"
+    api_secret = "BBHDENHQF8PRDX7YN8LOJPEXU2DBJFJM"

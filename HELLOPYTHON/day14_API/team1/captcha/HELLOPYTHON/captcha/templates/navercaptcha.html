@@ -1,0 +1,15 @@
+<!--캡차API 사용자 화면 HTML-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <img alt="" src="{{ url_for('static', filename=captcha_image) }}">
+   <form method="post" action="captcha.check">
+      <input type="text" name="nnn"/>
+      <input type="submit" value="전송"/>
+   </form>
+</body>
+</html>
