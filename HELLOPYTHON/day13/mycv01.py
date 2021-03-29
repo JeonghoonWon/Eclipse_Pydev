@@ -8,6 +8,9 @@ print(img)
 cv2.imshow('Test Image', img)
 cv2.waitKey(0)
 
+cv2.imwrite('image/lena2.jpg', img)
+
+
 # 이미지 윈도우 삭제
 cv2.destroyAllWindows()
  
