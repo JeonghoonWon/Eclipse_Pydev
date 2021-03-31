@@ -139,7 +139,7 @@ class MyWindow(QMainWindow, form_class):
             int_wb = 1
         else :    
             self.arr2D[com_i][com_j] = -1
-            int_wb = 2
+            int_wb = -1
         self.myrender()
         
         up = self.getUP(com_i,com_j,int_wb)
@@ -163,7 +163,7 @@ class MyWindow(QMainWindow, form_class):
             else :
                 QtWidgets.QMessageBox.about(self,"omok","흑돌이 이겼습니다.")   
             self.flag_ing = False
-            
+            return
             
         self.flag_wb = not self.flag_wb
     
