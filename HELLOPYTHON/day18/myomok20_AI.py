@@ -34,9 +34,6 @@ class MyWindow(QMainWindow, form_class):
         self.arr2pb = []
 
 
-        
-   
-    
     #def loadUI(self):
         
         for i in range(20):

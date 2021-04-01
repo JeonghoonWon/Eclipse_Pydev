@@ -7,7 +7,7 @@ from tqdm import tqdm
 Dataset from https://gomocup.org/results/
 '''
 game_rule = 'Freestyle' # Freestyle, Fastgame, Standard, Renju
-base_path = '/Users/brad/Downloads/gomocup2019results'
+base_path = 'D:/workspace_python/HELLOPYTHON/day17_Omok_AI_kairess/gomocup2020results'
 output_path = os.path.join('dataset', os.path.basename(base_path))
 os.makedirs(output_path, exist_ok=True)
 
